@@ -17,6 +17,8 @@ DISTRICT_TARGETS = [
     {"province": "Samangan", "district": "Feroz Nakhchir", "male": 108, "female": 10},
     {"province": "Samangan", "district": "Hazrat-e- Sultan", "male": 138, "female": 2},
     {"province": "Samangan", "district": "Khulm", "male": 110, "female": 39},
+    {"province": "Laghman", "district": "Alingar", "male": 7, "female": 0},
+    {"province": "Laghman", "district": "Mihtarlam", "male": 0, "female": 2},
 ]
 
 PROVINCE_ALIASES = {
@@ -43,6 +45,8 @@ DISTRICT_ALIASES = {
     "Hazrat-e- Sultan": "Hazrat-e- Sultan",
     "Khulum": "Khulm",
     "Khulm": "Khulm",
+    "Alingar": "Alingar",
+    "Mihtarlam": "Mihtarlam",
 }
 
 TARGET_GENDERS = ("Male", "Female")

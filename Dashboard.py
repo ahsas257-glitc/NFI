@@ -131,6 +131,56 @@ def build_remaining_gap_df(df: pd.DataFrame, group_columns: list[str]) -> pd.Dat
     return df[keep_columns].sort_values(["remaining_total", "progress_total"], ascending=[False, True])
 
 
+def build_district_target_delivery_table(team_df: pd.DataFrame) -> pd.DataFrame:
+    if team_df.empty:
+        return pd.DataFrame(
+            columns=[
+                "Province",
+                "District",
+                "Target Male",
+                "Received Male",
+                "Remaining Male",
+                "Target Female",
+                "Received Female",
+                "Remaining Female",
+                "Enumerator Name",
+                "Data Recieved",
+            ]
+        )
+
+    delivery_df = team_df.copy()
+    delivery_df["District"] = delivery_df["district"].replace("Province-wide", "")
+    delivery_df["Data Recieved"] = delivery_df["total_received"]
+    delivery_df = delivery_df.rename(
+        columns={
+            "province": "Province",
+            "target_male": "Target Male",
+            "received_male": "Received Male",
+            "remaining_male": "Remaining Male",
+            "target_female": "Target Female",
+            "received_female": "Received Female",
+            "remaining_female": "Remaining Female",
+            "enumerator_name": "Enumerator Name",
+        }
+    )
+    selected_columns = [
+        "Province",
+        "District",
+        "Target Male",
+        "Received Male",
+        "Remaining Male",
+        "Target Female",
+        "Received Female",
+        "Remaining Female",
+        "Enumerator Name",
+        "Data Recieved",
+    ]
+    return delivery_df[selected_columns].sort_values(
+        ["Province", "District", "Enumerator Name"],
+        ascending=[True, True, True],
+    )
+
+
 def style_chart(chart: alt.Chart | alt.LayerChart | alt.HConcatChart | alt.VConcatChart):
     return (
         chart.configure(background="transparent")
@@ -219,6 +269,7 @@ district_volume_df = build_volume_by_district(working_df)
 interviewer_volume_df = build_volume_by_interviewer(working_df)
 district_gap_df = build_remaining_gap_df(working_district_progress, ["province", "district"])
 province_gap_df = build_remaining_gap_df(working_province_progress, ["province"])
+district_delivery_table = build_district_target_delivery_table(team_view)
 
 kpi_snapshot = build_kpi_snapshot(overview, working_df, working_province_progress)
 render_metric_row(
@@ -719,6 +770,11 @@ with target_tab:
                 district_table["progress_total"] = district_table["progress_total"].map(format_percent)
             st.dataframe(district_table, width="stretch", hide_index=True, height=420)
             close_panel()
+
+        open_panel()
+        st.subheader("District Target vs Data Received")
+        st.dataframe(district_delivery_table, width="stretch", hide_index=True, height=420)
+        close_panel()
 
 with team_tab:
     if team_view.empty:

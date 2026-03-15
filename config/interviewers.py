@@ -94,6 +94,6 @@ ENUMERATOR_TARGETS = [
     {"province": "Samangan", "district": "", "target_male": 0, "target_female": 0, "enumerator_name": "Ahmad Omid Samit"},
     {"province": "Samangan", "district": "", "target_male": 0, "target_female": 0, "enumerator_name": "Zabihullah Sakha"},
     {"province": "Samangan", "district": "", "target_male": 0, "target_female": 0, "enumerator_name": "Ahmad Shah Subhani"},
-    {"province": "Laghman", "district": "Alingar", "target_male": 0, "target_female": 0, "enumerator_name": "Fahimullah Rasa"},
-    {"province": "Laghman", "district": "Mihtarlam", "target_male": 0, "target_female": 0, "enumerator_name": "Hina Rasa"},
+    {"province": "Laghman", "district": "Alingar", "target_male": 7, "target_female": 0, "enumerator_name": "Fahimullah Rasa"},
+    {"province": "Laghman", "district": "Mihtarlam", "target_male": 0, "target_female": 2, "enumerator_name": "Hina Rasa"},
 ]
