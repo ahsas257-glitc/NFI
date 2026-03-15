@@ -29,7 +29,7 @@ def resolve_xlsform_path(base_dir: str | None = None) -> str:
         except Exception:
             continue
 
-    fallback = Path(r"C:\Users\LENOVO\Downloads\aq5LpJwndg6AiC6Y6p8iLt.xlsx")
+    fallback = Path(r"data/aq5LpJwndg6AiC6Y6p8iLt.xlsx")
     if fallback.exists():
         return str(fallback)
 
